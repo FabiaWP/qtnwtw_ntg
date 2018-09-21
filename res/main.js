@@ -1,7 +1,8 @@
 jQuery(document).ready(function($) {
 
-alert('plugin per generare le notifiche attivo');
 
+var button = document.getElementById('generateNotification');
+button.addEventListener('click', function() {
  $.ajax({
         url : setNotification.ajax_url,
     data: {
@@ -9,6 +10,8 @@ alert('plugin per generare le notifiche attivo');
        },
         success: function( data ) {
 
-            console.log(data);}
+            alert(data);
+        }
         });
-    });;
+});
+});
