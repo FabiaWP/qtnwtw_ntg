@@ -10,9 +10,6 @@ class notification {
     public function set_date($new_date) {
         $this->date = $new_date;
     }
-    public function calculateAge(){
-        return date('Y')- date('Y', strtotime($this->get_date()));
-    }
 }
 
 

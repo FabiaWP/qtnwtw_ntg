@@ -22,11 +22,17 @@ class TWR_TNG
     public function __construct()
     {
 
-        add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'), 999, 1);
+        //add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'), 999, 1);
+        add_action('admin_enqueue_scripts', array($this, 'enqueue_scripts'), 999, 1);
 
     }
     function enqueue_scripts()
     {
+        wp_register_script( 'twr-not-generator', plugins_url().'/'.basename(TWR_TNG). '/res/main.js');
+        wp_enqueue_script ( 'twr-not-generator');
+        wp_localize_script( 'twr-not-generator', 'setNotification', array(
+             'ajax_url' => admin_url( 'admin-ajax.php' )
+       ));
     }
 }
 
@@ -42,4 +48,13 @@ function global_notification_generator()
 
 function generate_notification_page(){
     return generateNotification();
+}
+
+add_action( 'wp_ajax_nopriv_setNotification', 'setNotification' );
+add_action( 'wp_ajax_setNotification'       , 'setNotification' );
+
+function setNotification(){
+    $return = 'pippo';
+    wp_send_json($return);
+
 }
