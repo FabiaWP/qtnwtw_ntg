@@ -41,7 +41,7 @@ add_action('admin_menu', 'global_notification_generator');
 
 function global_notification_generator()
 {
-    add_users_page('Generatore di notifiche', 'Generatore di notifiche', 'manage_options', 'generate_notification','generate_notification_page');
+    add_options_page('Generatore di notifiche', 'Generatore di notifiche', 'manage_options', 'generate_notification','generate_notification_page');
 }
 
 function generate_notification_page(){
