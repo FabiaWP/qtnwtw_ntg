@@ -28,12 +28,8 @@ class TWR_TNG
     }
     function enqueue_scripts()
     {
-        //wp_register_script( 'twr-not-generator', plugins_url().'/'.basename(TWR_TNG). '/res/main.js');
-        //wp_enqueue_script ( 'twr-not-generator');
-        //wp_localize_script( 'twr-not-generator', 'setNotification', array(
-        //     'ajax_url' => admin_url( 'admin-ajax.php' )
-        //));
-        wp_register_style('twr-not-generator', plugins_url().'/'.basename(TWR_HOME_METEO). '/res/style.css');
+
+        wp_register_style('twr-not-generator', plugins_url().'/'.basename(TWR_TNG). '/res/style.css');
         wp_enqueue_style( 'twr-not-generator');
     }
 }

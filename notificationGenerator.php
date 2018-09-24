@@ -30,37 +30,23 @@ function generateNotification(){
     <form method="post" action="" class="notificationGeneratorForm">
         <input type="text"       name="notificationTitle"   placeholder="Inserisci qui il titolo della notifica"    required /> </input>
         <textarea                name="notificationContent" placeholder="Inserisci qui il contenuto della notifica" required /> </textarea>
+        <select                  data-placeholder="Cerca utenti..." name="users[]" class="chosen" multiple style="width:400px;">
+            <option value="1">admin</option>
+            <option value="2">pepe</option>
+            <option value="3">pippo</option>
+        </select>
+
+
+        <script src="../wp-content/plugins/twr-not-generator/res/chosen.js"></script>
+        <script type="text/javascript">
+        $(".chosen").chosen({allow_single_deselect: true});
+        </script>
+
         <input type="submit"     name="submitbtn"           value="INVIA LA NOTIFICA" /> </input>
     </form>
 
-    <style>
 
-    textarea{
-    width: 50%;    
 
-    }
-    input[type=text], select {
-    width: 50%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;}
-
-    input[type=submit] {
-    width: 50%;
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;    cursor: pointer; }
-
-    input[type=submit]:hover {
-    background-color: #45a049; }
-
-</style>
 
     <?php
 }
@@ -74,7 +60,7 @@ function notificationFormSubmit() {
     $my_post = array(
     'post_type'     => 'notification',
     'post_title'    => $_POST['notificationTitle'],
-    'post_content'  => $_POST['notificationContent'],
+    'post_content'  => $_POST['notificationContent'].count($_POST['users']),
     'post_status'   => 'publish',
     'post_author'   => 1,
 
