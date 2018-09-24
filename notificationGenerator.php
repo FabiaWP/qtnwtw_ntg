@@ -21,6 +21,7 @@ add_action( 'init', 'create_posttype' );
 
 function generateNotification(){
 
+    $usersList=retrieveUsersWithId();
 
     ?>
     <div class="wrap">
@@ -28,12 +29,18 @@ function generateNotification(){
     </div>
 
     <form method="post" action="" class="notificationGeneratorForm">
-        <input type="text"       name="notificationTitle"   placeholder="Inserisci qui il titolo della notifica"    required /> </input>
-        <textarea                name="notificationContent" placeholder="Inserisci qui il contenuto della notifica" required /> </textarea>
-        <select                  data-placeholder="Cerca utenti..." name="users[]" class="chosen" multiple style="width:400px;">
-            <option value="1">admin</option>
-            <option value="2">pepe</option>
-            <option value="3">pippo</option>
+        <input type="text"        name="notificationTitle"   placeholder="Inserisci qui il titolo della notifica"    required /> </input>
+        <textarea                 name="notificationContent" placeholder="Inserisci qui il contenuto della notifica" required /> </textarea>
+        <select                   data-placeholder="Cerca utenti..." name="users[]" class="chosen" multiple style="width:400px;">
+            <?php
+            foreach ($usersList as $user) {
+                $user_info     = get_userdata($user->user_id);
+                $user_nicename = $user_info->user_nicename;
+                ?>
+                <option value="<?php echo $user->user_id; ?>"><?php echo $user_nicename; ?></option>
+                <?php
+            }
+            ?>
         </select>
 
 
@@ -63,10 +70,17 @@ function notificationFormSubmit() {
     'post_content'  => $_POST['notificationContent'].count($_POST['users']),
     'post_status'   => 'publish',
     'post_author'   => 1,
+    );
 
-     );
-
-     // Insert the post into the database.
+     // Insert the notification into the database.
      wp_insert_post( $my_post );
     }
+}
+
+function retrieveUsersWithId(){
+
+    global $wpdb;
+    $usersWithId = $wpdb->get_results( "SELECT DISTINCT user_id FROM `wp_usermeta` WHERE `meta_key` LIKE 'onesignal_id' ORDER BY `user_id` DESC");
+    return $usersWithId;
+
 }
