@@ -1,23 +1,7 @@
 <?php
 
-// Our custom post type function
-function create_posttype() {
-
-    register_post_type( 'notification',
-    // CPT Options
-    array(
-        'labels' => array(
-            'name' => __( 'Notifications' ),
-            'singular_name' => __( 'Notification' )
-        ),
-        'public' => true,
-        'has_archive' => true,
-        'rewrite' => array('slug' => 'notifications'),
-    )
-);
-}
-// Hooking up our function to theme setup
-add_action( 'init', 'create_posttype' );
+include("utils/cptGenerator.php");
+include("utils/retrieveUsersWithId.php");
 
 function generateNotification(){
 
@@ -35,7 +19,7 @@ function generateNotification(){
         <textarea                 name="notificationContent" placeholder="Inserisci il contenuto della notifica" required /> </textarea>
         <p>Data di invio della notifica    :  </p>           <input type="text" id="datepicker" name="scheduledDate">
         <p>Utenti a cui inviare la notifica:  </p>
-        <select                   data-placeholder="Cerca utenti..." name="users[]" class="chosen" multiple style="width:400px;">
+        <select                   data-placeholder="Cerca utenti..." name="usersList[]" class="chosen" multiple style="width:400px;">
             <?php
             foreach ($usersList as $user) {
                 $user_info     = get_userdata($user->user_id);
@@ -58,7 +42,7 @@ function generateNotification(){
             $( "#datepicker" ).datetimepicker({ minDate:0, dateFormat: 'dd-mm-yy' });
         } );
         </script>
-        <input type="submit"     name="submitbtn"           value="INVIA LA NOTIFICA" /> </input>
+        <input type="submit" name="submitbtn" value="INVIA LA NOTIFICA" /> </input>
     </form>
     <?php
 }
@@ -69,15 +53,16 @@ function notificationFormSubmit() {
 
     if( isset( $_POST['submitbtn'] ) ) {
         echo 'La notifica è stata inserita correttamente.';
-        $usersList     =$_POST['users'];
+        $usersList     =$_POST['usersList'];
         $scheduledDate =$_POST['scheduledDate'];
+        $current_user = wp_get_current_user();
 
         $my_post = array(
             'post_type'     => 'notification',
             'post_title'    => $_POST['notificationTitle'],
-            'post_content'  => $_POST['notificationContent'].$list.$scheduledDate,
+            'post_content'  => $_POST['notificationContent'],
             'post_status'   => 'publish',
-            'post_author'   => 1,
+            'post_author'   => $current_user->ID,
         );
         // Insert the notification into the database.
         $postId=wp_insert_post( $my_post );
@@ -86,11 +71,4 @@ function notificationFormSubmit() {
             update_post_meta($postId,'scheduledDate',$scheduledDate);
         }
     }
-}
-
-function retrieveUsersWithId(){
-
-    global $wpdb;
-    $usersWithId = $wpdb->get_results( "SELECT DISTINCT user_id FROM `wp_usermeta` WHERE `meta_key` LIKE 'onesignal_id' ORDER BY `user_id` DESC");
-    return $usersWithId;
 }

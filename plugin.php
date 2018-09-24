@@ -30,13 +30,11 @@ class TWR_TNG
     function enqueue_scripts()
     {
 
-        wp_register_style('twr-not-generator', plugins_url().'/'.basename(TWR_TNG). '/res/css/style.css');
+        wp_register_style('twr-not-generator', plugins_url().'/'.basename(TWR_TNG). '/res/style.css');
         wp_enqueue_style( 'twr-not-generator');
-        wp_register_style('twr-date-time-picker', plugins_url().'/'.basename(TWR_TNG). '/res/css/datetimepickerstyle.min.css');
+        wp_register_style('twr-date-time-picker', plugins_url().'/'.basename(TWR_TNG). '/res/datetimepickerstyle.min.css');
         wp_enqueue_style( 'twr-date-time-picker');
-        wp_enqueue_script( 'jquery-ui-datepicker' );
-        wp_register_style( 'jquery-ui', 'http://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css' );
-        wp_enqueue_style ( 'jquery-ui' );
+
     }
 }
 
