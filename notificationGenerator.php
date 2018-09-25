@@ -53,7 +53,6 @@ add_action( 'init', 'notificationFormSubmit');
 function notificationFormSubmit() {
 
     if( isset( $_POST['submitbtn'] ) ) {
-        echo 'La notifica è stata inserita correttamente.';
         $usersList     =$_POST['usersList'];
         $scheduledDate =$_POST['scheduledDate'];
         $current_user = wp_get_current_user();
@@ -143,6 +142,6 @@ function createOneSignalNotification($notificationWPId){
     if ($err) {
         echo "cURL Error #:" . $err;
     } else {
-        echo $response.$scheduledDate;
+
     };
 }
