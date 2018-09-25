@@ -1,17 +1,21 @@
 jQuery(document).ready(function($) {
 
+$(".chosen").chosen({allow_single_deselect: true});
 
-var button = document.getElementById('generateNotification');
-button.addEventListener('click', function() {
- $.ajax({
-        url : setNotification.ajax_url,
-    data: {
-           'action': 'setNotification',
-       },
-        success: function( data ) {
+$("#datepicker").datetimepicker({ minDate:0, dateFormat: 'dd-mm-yy' });
 
-            alert(data);
-        }
-        });
-});
+
+// var button = document.getElementById('generateNotification');
+// button.addEventListener('click', function() {
+//  $.ajax({
+//         url : setNotification.ajax_url,
+//     data: {
+//            'action': 'setNotification',
+//        },
+//         success: function( data ) {
+//
+//             alert(data);
+//         }
+//         });
+// });
 });

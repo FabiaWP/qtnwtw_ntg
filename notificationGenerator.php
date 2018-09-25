@@ -30,17 +30,6 @@ function generateNotification(){
             }
             ?>
         </select>
-
-
-
-        <script type="text/javascript">
-        $(".chosen").chosen({allow_single_deselect: true});
-        </script>
-        <script>
-        $( function() {
-            $( "#datepicker" ).datetimepicker({ minDate:0, dateFormat: 'dd-mm-yy' });
-        } );
-        </script>
         <input type="submit" name="submitbtn" value="INVIA LA NOTIFICA" /> </input>
     </form>
     <?php

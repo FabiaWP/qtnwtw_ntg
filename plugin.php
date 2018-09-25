@@ -29,14 +29,17 @@ class TWR_TNG
     function enqueue_scripts()
     {
 
-        wp_register_style('twr-not-generator', plugins_url().'/'.basename(TWR_TNG). '/res/style.css');
-        wp_enqueue_style( 'twr-not-generator');
-        wp_register_style('twr-date-time-picker', plugins_url().'/'.basename(TWR_TNG). '/res/datetimepickerstyle.min.css');
-        wp_enqueue_style( 'twr-date-time-picker');
+        wp_register_style ('twr-not-generator', plugins_url().'/'.basename(TWR_TNG). '/res/style.css');
+        wp_enqueue_style  ('twr-not-generator');
+        wp_register_style ('twr-date-time-picker', plugins_url().'/'.basename(TWR_TNG). '/res/datetimepickerstyle.min.css');
+        wp_enqueue_style  ('twr-date-time-picker');
         wp_register_script('twr-chosen', plugins_url().'/'.basename(TWR_TNG). '/res/js/chosen.js');
-        wp_enqueue_script( 'twr-chosen');
+        wp_enqueue_script ('twr-chosen');
         wp_register_script('twr-date-time-picker-js', plugins_url().'/'.basename(TWR_TNG). '/res/js/datetimepicker.js');
-        wp_enqueue_script( 'twr-date-time-picker-js');
+        wp_enqueue_script ('twr-date-time-picker-js');
+        wp_register_script('twr-main', plugins_url().'/'.basename(TWR_TNG). '/res/js/main.js');
+        wp_enqueue_script ('twr-main');
+
 
     }
 }
