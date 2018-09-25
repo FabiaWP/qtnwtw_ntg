@@ -18,7 +18,7 @@ box-sizing: border-box;}
 .notificationGeneratorForm input[type=submit] {
 width: 400px;
 display: block;
-background-color: #4CAF50;
+background-color: #253363 ;
 color: white;
 padding: 14px 20px;
 margin: 8px 0;
@@ -27,7 +27,100 @@ border-radius: 4px;
 cursor: pointer; }
 
 .notificationGeneratorForm input[type=submit]:hover {
-background-color: #45a049; }
+background-color: #253363 ; }
+
+
+
+#twr-notification-table table,
+#twr-notification-table table thead,
+#twr-notification-table table thead tr,
+#twr-notification-table table thead tr th,
+#twr-notification-table table tbody,
+#twr-notification-table table tbody tr,
+#twr-notification-table table tbody tr td {
+  display: flex;
+  flex: 1;
+}
+
+#twr-notification-table table {
+  flex-direction: column;
+  width: 100%;
+  background-color: #ffffff;
+  border-collapse: collapse;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 2px 0 0 rgba(0,0,0, 0.05);
+}
+
+#twr-notification-table table thead,
+#twr-notification-table table tbody {
+  flex-direction: column;
+}
+
+#twr-notification-table table thead {
+  color: #ffffff;
+  background-color: #253363 ;
+}
+
+#twr-notification-table table thead tr th,
+#twr-notification-table table tbody tr td {
+  padding: 5px 10px;
+}
+
+@media (max-width: 480px) {
+
+  #twr-notification-table table,
+  #twr-notification-table table tbody,
+  #twr-notification-table table tbody tr {
+    flex-direction: column;
+  }
+
+  #twr-notification-table table {
+    width: 100%;
+  }
+
+  #twr-notification-table table thead {
+    font-size: 0;
+  }
+
+  #twr-notification-table table thead tr th {
+    display: none;
+  }
+
+  #twr-notification-table table thead tr:first-child {
+    display: flex;
+  }
+
+  #twr-notification-table table thead tr:first-child::before {
+    content: 'Table';
+    display: flex;
+    padding: 5px 10px;
+    width: 100%;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  #twr-notification-table table tbody tr {
+    border-bottom: 1px solid #efefef;
+  }
+
+  #twr-notification-table table tbody tr td {
+    display: block;
+  }
+
+  #twr-notification-table table tbody tr:last-of-type{
+    border-bottom-width: 0;
+  }
+
+  #twr-notification-table table tbody tr td::before {
+    content: attr(data-thead);
+    display: inline-block;
+    position: relative;
+    margin-right: 5px;
+    font-weight: bold;
+  }
+
+}
 
 /*!
 Chosen, a Select Box Enhancer for jQuery and Prototype
