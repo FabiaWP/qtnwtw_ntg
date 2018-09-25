@@ -32,8 +32,7 @@ function generateNotification(){
         </select>
 
 
-        <script src="../wp-content/plugins/twr-not-generator/res/js/chosen.js"></script>
-        <script src="../wp-content/plugins/twr-not-generator/res/js/datetimepicker.js"></script>
+
         <script type="text/javascript">
         $(".chosen").chosen({allow_single_deselect: true});
         </script>
