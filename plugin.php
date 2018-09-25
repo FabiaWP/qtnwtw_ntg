@@ -55,7 +55,15 @@ function global_notification_generator()
 }
 
 function generate_notification_page(){
+
+    if ( is_plugin_active( 'onesignal-free-web-push-notifications/onesignal.php' ) ) {
     return generateNotification();
+} else
+{
+    return generateWarningPage();
+}
+
+
 }
 
 add_action( 'wp_ajax_nopriv_setNotification', 'setNotification' );

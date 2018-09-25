@@ -3,6 +3,9 @@
 include("utils/cptGenerator.php");
 include("utils/retrieveUsersWithId.php");
 
+add_action( 'init', 'notificationFormSubmit');
+
+
 function generateNotification(){
 
     $usersList=retrieveUsersWithId();
@@ -34,9 +37,6 @@ function generateNotification(){
     </form>
     <?php
 }
-
-add_action( 'init', 'notificationFormSubmit');
-
 
 function notificationFormSubmit() {
 
@@ -132,4 +132,19 @@ function createOneSignalNotification($notificationWPId){
     } else {
 
     };
+}
+
+function generateWarningPage(){
+
+    ?>
+    <div class="wrap">
+        <h2>Attenzione!</h2>
+    </div>
+
+    <div class="wrap">
+        <h3>Sembra che il plugin di OneSignal sia stato disattivato. Contattare il supporto.</h3>
+    </div>
+
+
+    <?php
 }
